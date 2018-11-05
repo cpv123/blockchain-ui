@@ -1,12 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
+import App from './routes/App';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import promise from 'redux-promise';
+import thunk from 'redux-thunk';
+import reducers from './reducers';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const createStoreWithMiddleware = compose(applyMiddleware(promise, thunk),
+	window.devToolsExtension ? window.devToolsExtension() : f => f)(createStore);
+  
+const store = createStoreWithMiddleware(reducers);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(
+    <Provider store={store}>
+        <BrowserRouter>
+            <MuiThemeProvider>
+                <App />
+            </MuiThemeProvider>
+        </BrowserRouter>
+    </Provider>, 
+    document.getElementById('root')
+);
