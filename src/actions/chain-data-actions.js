@@ -20,7 +20,7 @@ const getChainError = (error) => ({
     payload: error,
 });
 
-export function getChain() {
+export default function getChain() {
     return (dispatch) => {
 
         dispatch(getChainBegin());

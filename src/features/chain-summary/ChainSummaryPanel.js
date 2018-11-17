@@ -1,11 +1,14 @@
 import React from 'react';
+import { CircularProgress } from '@material-ui/core';
 import Panel from '../../components/Panel';
 import ChainSummary from './ChainSummary';
 
-function ChainSummaryPanel() {
+function ChainSummaryPanel({ isLoading }) {
     return (
         <Panel title="View chain summary">
-            <ChainSummary />
+            { isLoading ? <CircularProgress /> : (
+                <ChainSummary /> 
+            )}
         </Panel>
     );
 }

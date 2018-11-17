@@ -11,7 +11,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = (theme) => ({
     root: {
-        width: '40%',
         margin: 15,
         display: 'flex',
         flexDirection: 'column',
