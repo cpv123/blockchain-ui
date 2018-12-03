@@ -5,7 +5,7 @@ import FullChain from './FullChain';
 
 function TransactionPanel({ chainData, isLoading }) {
     return (
-        <Panel title="View the full chain">
+        <Panel title="VIEW THE FULL CHAIN">
             { isLoading ? <CircularProgress /> : (
                 <FullChain chainData={chainData} />
             )}

@@ -9,7 +9,7 @@ function App({ classes }) {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" color="inherit" noWrap>
-                        React Blockchain
+                        Redux Blockchain
                     </Typography>
                 </Toolbar>
             </AppBar>

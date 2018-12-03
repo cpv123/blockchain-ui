@@ -4,7 +4,7 @@ import TransactionForm from './TransactionForm';
 
 function TransactionPanel() {
     return (
-        <Panel title="Make a new transaction">
+        <Panel title="MAKE A NEW TRANSACTION">
             <TransactionForm />
         </Panel>
     );

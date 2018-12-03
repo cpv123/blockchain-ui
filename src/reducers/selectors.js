@@ -1,14 +1,14 @@
 import { createSelector } from 'reselect';
 
-const chainSelector = state => state.main.chain.chainData.data.chain;
+const getChain = state => state.main.chain.chainData.chain;
 
-export const totalBlocksSelector = createSelector(
-    chainSelector,
+export const getTotalBlocks = createSelector(
+    getChain,
     chain => chain.length
 );
 
-export const totalTransactionsSelector = createSelector(
-    chainSelector,
+export const getTotalTransactions = createSelector(
+    getChain,
     chain => {
         let totalTransactions = 0;
         for (let block of chain) {
@@ -18,8 +18,8 @@ export const totalTransactionsSelector = createSelector(
     }
 );
 
-export const totalAmountSentSelector = createSelector(
-    chainSelector,
+export const getTotalAmountSent = createSelector(
+    getChain,
     chain => {
         let totalAmountSent = 0;
         for (let block of chain) {

@@ -6,6 +6,7 @@ import {
     GET_CHAIN_BEGIN,
     GET_CHAIN_SUCCESS,
     GET_CHAIN_ERROR,
+    GET_CHAIN_CLOSE_SNACK,
     POST_TRANSACTION_BEGIN,
     POST_TRANSACTION_SUCCESS,
     POST_TRANSACTION_ERROR,
@@ -23,6 +24,8 @@ const defaultState = {
         isLoading: false,
         isError: false,
         chainData: {},
+        isSnackOpen: false,
+        snackMessage: "",
     },
     mineBlock: {
         isLoading: false,
@@ -99,8 +102,18 @@ const actionHandlers = {
         chain: {
             ...state.chain,
             isLoading: false,
-            isError: action.error,
+            isError: action.payload,
+            isSnackOpen: true,
+            snackMessage: `Cannot get the blockchain: ${action.payload.message}`,
         },
+    }),
+
+    [GET_CHAIN_CLOSE_SNACK]: (state, action) => ({
+        ...state,
+        chain: {
+            isSnackOpen: false,
+            snackMessage: "",
+        }
     }),
 
 /*
@@ -130,7 +143,8 @@ const actionHandlers = {
             ...state.mineBlock,
             isLoading: false,
             isSnackOpen: true,
-            error: action.error,
+            error: action.payload,
+            snackMessage: `Cannot mine block: ${action.payload.message}`,
         }
     }),
 

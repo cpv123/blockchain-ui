@@ -4,24 +4,24 @@ import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { 
-    totalBlocksSelector, 
-    totalTransactionsSelector,
-    totalAmountSentSelector
-} from '../../utils/selectors';
+    getTotalBlocks, 
+    getTotalTransactions,
+    getTotalAmountSent
+} from '../../reducers/selectors';
 
 const styles = {
     text: {
         margin: 5,
-    }
+    },
 };
 
 class ChainSummary extends Component {
 
     static propTypes = {
         classes: PropTypes.object.isRequired,
-        blocks: PropTypes.number,
-        transactions: PropTypes.number,
-        amount: PropTypes.number,
+        blocks: PropTypes.number.isRequired,
+        transactions: PropTypes.number.isRequired,
+        amount: PropTypes.number.isRequired,
     };
 
     render() {
@@ -30,18 +30,18 @@ class ChainSummary extends Component {
 
         return (
             <div>
-                <Typography className={classes.text}>Total blocks: {blocks}</Typography>
-                <Typography className={classes.text}>Total transactions: {transactions}</Typography>
-                <Typography className={classes.text}>Total amount sent: {amount}</Typography>
+                <Typography className={classes.text} variant="h6">Total blocks: {blocks}</Typography>
+                <Typography className={classes.text} variant="h6">Total transactions: {transactions}</Typography>
+                <Typography className={classes.text} variant="h6">Total amount sent: {amount}</Typography>
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    blocks: totalBlocksSelector(state),
-    transactions: totalTransactionsSelector(state),
-    amount: totalAmountSentSelector(state),
+    blocks: getTotalBlocks(state),
+    transactions: getTotalTransactions(state),
+    amount: getTotalAmountSent(state),
 });
 
 export default 

@@ -5,7 +5,7 @@ import ChainSummary from './ChainSummary';
 
 function ChainSummaryPanel({ isLoading }) {
     return (
-        <Panel title="View chain summary">
+        <Panel title="VIEW CHAIN SUMMARY">
             { isLoading ? <CircularProgress /> : (
                 <ChainSummary /> 
             )}

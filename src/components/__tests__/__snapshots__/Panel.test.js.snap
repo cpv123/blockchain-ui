@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the Panel component renders correctly 1`] = `
+<Panel
+  classes={
+    Object {
+      "heading": "Panel-heading-3",
+      "rootGrey": "Panel-rootGrey-1",
+      "rootWhite": "Panel-rootWhite-2",
+    }
+  }
+  color="grey"
+  title="Test Panel"
+>
+  <Component />
+</Panel>
+`;

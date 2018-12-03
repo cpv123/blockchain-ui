@@ -10,22 +10,27 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = (theme) => ({
-    root: {
+    rootGrey: {
         margin: 15,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: 'lightGrey'
+    },
+    rootWhite: {
+        ...styles.rootGrey,
+        backgroundColor: 'white',
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
-        fontWeight: theme.typography.fontWeightRegular,
+        fontWeight: 'bold',
     },
 });
 
-function Panel({ classes, title, children }) {
+function Panel({ classes, title, children, color }) {
     return (
-        <ExpansionPanel className={classes.root}>
+        <ExpansionPanel className={color === 'grey' ? classes.rootGrey : classes.rootWhite}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography className={classes.heading}>{title}</Typography>
             </ExpansionPanelSummary>
@@ -38,8 +43,13 @@ function Panel({ classes, title, children }) {
 
 Panel.propTypes = {
     classes: PropTypes.object.isRequired,
-    title: PropTypes.string.isRequired,
-    children: PropTypes.any.isRequired,
+    title: PropTypes.string,
+    children: PropTypes.any,
+    color: PropTypes.string,
 };
+
+Panel.defaultProps = {
+    color: 'grey',
+}
 
 export default withStyles(styles)(Panel);

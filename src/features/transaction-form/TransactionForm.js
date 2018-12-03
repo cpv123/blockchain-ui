@@ -5,6 +5,11 @@ import { TextField } from 'redux-form-material-ui';
 import { Button, Snackbar } from '@material-ui/core';
 import postTransaction from '../../actions/post-transaction-actions';
 
+const styles = {
+    floatingLabelStyle: { color: 'rgb(70,69,69)' },
+    underlineFocusStyle: { borderColor: 'rgb(70,69,69)' },
+};
+
 class TransactionForm extends Component {
 
     render() {
@@ -20,14 +25,17 @@ class TransactionForm extends Component {
                     <Field 
                         name="sender" 
                         floatingLabelText="Sender"
+                        floatingLabelStyle={styles.floatingLabelStyle}
+                        underlineFocusStyle={styles.underlineFocusStyle}
                         component={TextField}
                         validate={required} 
-                        underlineStyle={{ color: 'red' }}
                     />
 
                     <Field 
                         name="recipient"
-                        floatingLabelText="Recipient" 
+                        floatingLabelText="Recipient"
+                        floatingLabelStyle={styles.floatingLabelStyle}
+                        underlineFocusStyle={styles.underlineFocusStyle} 
                         component={TextField}
                         validate={required} 
                     />
@@ -35,6 +43,8 @@ class TransactionForm extends Component {
                     <Field 
                         name="amount"
                         floatingLabelText="Amount"
+                        floatingLabelStyle={styles.floatingLabelStyle}
+                        underlineFocusStyle={styles.underlineFocusStyle}
                         component={TextField}
                         validate={[required, validateAmount]} 
                     />
@@ -86,13 +96,11 @@ const onSubmit = (values, dispatch) => {
     dispatch(postTransaction(values));
 };
 
-function mapStateToProps(state) {
-    return {
-        isLoading: state.main.transactions.isLoading,
-        isSnackOpen: state.main.transactions.isSnackOpen,
-        snackMessage: state.main.transactions.snackMessage,
-    };
-}
+const mapStateToProps = state => ({
+    isLoading: state.main.transactions.isLoading,
+    isSnackOpen: state.main.transactions.isSnackOpen,
+    snackMessage: state.main.transactions.snackMessage,
+});
   
 export default reduxForm({
     form: 'transactionForm',

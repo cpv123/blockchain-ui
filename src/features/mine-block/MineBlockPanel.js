@@ -5,7 +5,7 @@ import Panel from '../../components/Panel';
 import mineBlock from '../../actions/mine-block-actions';
 import getChain from '../../actions/chain-data-actions';
 
-class MineBlockPanel extends Component {
+export class MineBlockPanel extends Component {
 
     handleClick = () => {
         this.props.mineBlock()
@@ -15,8 +15,9 @@ class MineBlockPanel extends Component {
     render() {
         return (
             <React.Fragment>
-                <Panel title="Mine a block">
+                <Panel title="MINE A BLOCK">
                     <Button
+                        id="mine-block-button"
                         variant="contained"
                         color="secondary"
                         onClick={this.handleClick}

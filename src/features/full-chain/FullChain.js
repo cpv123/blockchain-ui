@@ -1,4 +1,6 @@
 import React from 'react';
+import Panel from '../../components/Panel';
+import BlockDetails from './BlockDetails';
 
 function FullChain({ chainData }) {
     return (
@@ -7,11 +9,19 @@ function FullChain({ chainData }) {
                 chainData.chain.map(block => {
                     if (block.index === 1) {
                         return (
-                            <p>genesis block</p>
+                            <Panel title="Genesis Block" color={'white'}>
+                                <BlockDetails
+                                    block={block}
+                                />
+                            </Panel>
                         );
                     } else {
                         return (
-                            <p>normal block</p>
+                            <Panel title={`Block ${block.index}`} color={'white'}>
+                                <BlockDetails
+                                    block={block}
+                                />
+                            </Panel>
                         );
                     }
                 })

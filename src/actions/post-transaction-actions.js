@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { buildUrl } from '../utils/buildUrl';
+import buildUrl from '../utils/buildUrl';
 import { 
     POST_TRANSACTION_BEGIN,
     POST_TRANSACTION_SUCCESS,
@@ -7,21 +7,21 @@ import {
     POST_TRANSACTION_CLOSE_SNACK,
 } from './types';
 
-const postTransactionBegin = () => ({
+export const postTransactionBegin = () => ({
     type: POST_TRANSACTION_BEGIN,
 });
 
-const postTransactionSuccess = (response) => ({
+export const postTransactionSuccess = (response) => ({
     type: POST_TRANSACTION_SUCCESS,
     payload: response,
 });
 
-const postTransactionError = (error) => ({
+export const postTransactionError = (error) => ({
     type: POST_TRANSACTION_ERROR,
     payload: error,
 });
 
-const postTransactionCloseSnack = () => ({
+export const postTransactionCloseSnack = () => ({
     type: POST_TRANSACTION_CLOSE_SNACK,
 });
 
@@ -39,7 +39,8 @@ export default function postTransaction(values) {
                 }
             },
             (error) => {
-                dispatch(postTransactionError(error))
+                dispatch(postTransactionError(error));
+                setTimeout(() => dispatch(postTransactionCloseSnack()), 5000);
             });
     }
 }

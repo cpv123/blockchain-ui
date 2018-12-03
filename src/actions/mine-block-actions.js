@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { buildUrl } from '../utils/buildUrl';
+import buildUrl from '../utils/buildUrl';
 import { 
     MINE_BLOCK_BEGIN,
     MINE_BLOCK_SUCCESS,
@@ -7,21 +7,21 @@ import {
     MINE_BLOCK_CLOSE_SNACK,
 } from './types';
 
-const mineBlockBegin = () => ({
+export const mineBlockBegin = () => ({
     type: MINE_BLOCK_BEGIN,
 });
 
-const mineBlockSuccess = (response) => ({
+export const mineBlockSuccess = (response) => ({
     type: MINE_BLOCK_SUCCESS,
     payload: response,
 });
 
-const mineBlockError = (error) => ({
+export const mineBlockError = (error) => ({
     type: MINE_BLOCK_ERROR,
     payload: error,
 });
 
-const mineBlockCloseSnack = () => ({
+export const mineBlockCloseSnack = () => ({
     type: MINE_BLOCK_CLOSE_SNACK,
 });
 
@@ -39,7 +39,8 @@ export default function mineBlock() {
                 }
             },
             (error) => {
-                dispatch(mineBlockError(error))
+                dispatch(mineBlockError(error));
+                setTimeout(() => dispatch(mineBlockCloseSnack()), 5000);
             });
     }
 }
