@@ -1,17 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`the Panel component renders correctly 1`] = `
-<Panel
-  classes={
-    Object {
-      "heading": "Panel-heading-3",
-      "rootGrey": "Panel-rootGrey-1",
-      "rootWhite": "Panel-rootWhite-2",
-    }
-  }
-  color="grey"
-  title="Test Panel"
+exports[`The Panel component renders as expected with children 1`] = `
+<WithStyles(ExpansionPanel)
+  className="Panel-rootGrey-1"
 >
-  <Component />
-</Panel>
+  <WithStyles(ExpansionPanelSummary)
+    expandIcon={<pure(ExpandMoreIcon) />}
+  >
+    <WithStyles(Typography)
+      className="Panel-heading-3"
+    >
+      Test Panel
+    </WithStyles(Typography)>
+  </WithStyles(ExpansionPanelSummary)>
+  <WithStyles(ExpansionPanelDetails)>
+    <div>
+      <p>
+        Test panel children
+      </p>
+    </div>
+  </WithStyles(ExpansionPanelDetails)>
+</WithStyles(ExpansionPanel)>
 `;
